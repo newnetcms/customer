@@ -21,8 +21,6 @@ class CustomerServiceProvider extends BaseModuleServiceProvider
 
         $this->registerConfigData();
 
-        $this->registerMiddleware();
-
         $this->app->singleton(CustomerRepositoryInterface::class, function () {
             return new CustomerRepository(new Customer());
         });
@@ -33,6 +31,13 @@ class CustomerServiceProvider extends BaseModuleServiceProvider
 
     }
 
+    public function boot()
+    {
+        parent::boot();
+
+        $this->overwriteMiddleware();
+    }
+
     protected function registerConfigData()
     {
         $aclConfigData = include __DIR__ . '/../config/customer.php';
@@ -41,7 +46,7 @@ class CustomerServiceProvider extends BaseModuleServiceProvider
         $this->app['config']->set('auth', $auth);
     }
 
-    protected function registerMiddleware()
+    protected function overwriteMiddleware()
     {
         /** @var Router $router */
         $router = $this->app['router'];
