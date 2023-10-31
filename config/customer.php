@@ -48,4 +48,13 @@ return [
     'redirect_if_authenticated' => function () {
         return route('customer.web.customer.profile');
     },
+
+    'login_username' => 'email',
+
+    'validator' => [
+        'name' => true,
+        'email' => true,
+        'phone' => false,
+        'password' => true,
+    ]
 ];

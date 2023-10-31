@@ -42,15 +42,30 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-//            'phone'     => ['required', 'numeric', 'unique:customer__customers,phone'],
-            'email'     => ['required', 'string', 'email', 'max:255', 'unique:customer__customers'],
-            'password'  => ['required', 'string', 'min:6'],
+            'name' => [
+                config('cms.customer.validator.name') ? 'required' : null,
+                'string',
+                'max:255'
+            ],
+            'phone' => [
+                config('cms.customer.validator.phone') ? 'required' : null,
+                'numeric',
+                'unique:customer__customers,phone'
+            ],
+            'email' => [
+                config('cms.customer.validator.email') ? 'required' : null,
+                'email',
+                'unique:customer__customers'
+            ],
+            'password' => [
+                config('cms.customer.validator.password') ? 'required' : null,
+                'min:6'
+            ],
         ], [], [
-            'name'                  => __('customer::customer.name'),
-//            'phone'                 => __('customer::customer.phone'),
-            'email'                 => __('customer::customer.email'),
-            'password'              => __('customer::customer.password'),
+            'name' => __('customer::customer.name'),
+            'phone' => __('customer::customer.phone'),
+            'email' => __('customer::customer.email'),
+            'password' => __('customer::customer.password'),
             'password_confirmation' => __('customer::customer.password_confirmation'),
         ]);
     }
@@ -63,12 +78,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Customer::create([
-            'email'     => $data['email'],
-            'name' => $data['name'],
-//            'phone'     => $data['phone'],
-            'password'  => Hash::make($data['password']),
-        ]);
+        return Customer::create(array_filter([
+            'email' => $data['email'] ?? null,
+            'name' => $data['name'] ?? null,
+            'phone' => $data['phone'] ?? null,
+            'password' => isset($data['password']) ? Hash::make($data['password']) : null,
+        ]));
     }
 
     /**

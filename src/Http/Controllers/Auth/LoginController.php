@@ -32,6 +32,11 @@ class LoginController extends Controller
         return Auth::guard('customer');
     }
 
+    public function username()
+    {
+        return config('cms.customer.login_username');
+    }
+
     /**
      * Show the application's login form.
      *
