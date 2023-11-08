@@ -36,7 +36,7 @@ if (!function_exists('current_customer')) {
     /**
      * Get Current Customer
      *
-     * @return Customer|null
+     * @return \Newnet\Customer\Models\Customer|null
      */
     function current_customer()
     {
@@ -48,7 +48,7 @@ if (!function_exists('get_current_customer')) {
     /**
      * Get Current Customer
      *
-     * @return Customer|null
+     * @return \Illuminate\Contracts\Auth\Authenticatable|\Newnet\Customer\Models\Customer|null
      */
     function get_current_customer()
     {
