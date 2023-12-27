@@ -41,6 +41,10 @@ return [
         return route('customer.web.customer.profile');
     },
 
+    'redirect_after_register' => function () {
+        return route('customer.web.customer.profile');
+    },
+
     'redirect_after_logout' => function () {
         return route('customer.web.customer.login');
     },

@@ -93,7 +93,7 @@ class RegisterController extends Controller
      */
     protected function redirectTo()
     {
-        $config = config('cms.customer.redirect_after_login', route('customer.web.customer.profile'));
+        $config = config('cms.customer.redirect_after_register', route('customer.web.customer.profile'));
 
         return is_callable($config) ? $config() : $config;
     }

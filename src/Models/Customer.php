@@ -20,6 +20,7 @@ use Newnet\Media\Traits\HasMediaTrait;
  * @property \Illuminate\Support\Carbon|null $birthday
  * @property string|null $gender
  * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property \Illuminate\Support\Carbon|null $phone_verified_at
  * @property string|null $password
  * @property string|null $remember_token
  * @property string|null $country_code_residence
@@ -67,11 +68,14 @@ class Customer extends Authenticatable
         'birthday',
         'gender',
         'avatar',
+        'email_verified_at',
+        'phone_verified_at',
     ];
 
     protected $casts = [
         'is_active'         => 'boolean',
         'email_verified_at' => 'datetime',
+        'phone_verified_at' => 'datetime',
     ];
 
     protected $dates = [
