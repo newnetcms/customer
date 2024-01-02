@@ -60,5 +60,6 @@ return [
         'email' => true,
         'phone' => false,
         'password' => true,
+        'password_confirmed' => env('CUSTOMER_VALIDATOR_PASSWORD_CONFIRMED', false),
     ]
 ];

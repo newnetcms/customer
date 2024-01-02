@@ -59,6 +59,7 @@ class RegisterController extends Controller
             ],
             'password' => [
                 config('cms.customer.validator.password') ? 'required' : null,
+                config('cms.customer.validator.password_confirmed') ? 'confirmed' : null,
                 'min:6'
             ],
         ], [], [
