@@ -68,6 +68,7 @@ class Customer extends Authenticatable
         'birthday',
         'gender',
         'avatar',
+        'avatar_cache',
         'email_verified_at',
         'phone_verified_at',
     ];
@@ -99,6 +100,10 @@ class Customer extends Authenticatable
 
     public function getAvatarAttribute()
     {
+        if ($this->avatar_cache) {
+            return $this->avatar_cache;
+        }
+
         if ($this->hasMedia('avatar')) {
             return $this->getFirstMedia('avatar');
         }
