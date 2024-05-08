@@ -24,7 +24,9 @@ class Authenticate extends \Illuminate\Auth\Middleware\Authenticate
     {
         if (!$request->expectsJson()) {
             if (in_array('customer', $guards)) {
-                return route('customer.web.customer.login');
+                $config = config('cms.customer.redirect_if_unauthenticated', route('customer.web.customer.login'));
+
+                return is_callable($config) ? $config() : $config;
             } elseif (\Route::has('customer.web.customer.login')) {
                 return route('customer.web.customer.login');
             } else {

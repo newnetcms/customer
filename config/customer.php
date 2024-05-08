@@ -53,6 +53,10 @@ return [
         return route('customer.web.customer.profile');
     },
 
+    'redirect_if_unauthenticated' => function () {
+        return route('customer.web.customer.login');
+    },
+
     'login_username' => 'email',
 
     'validator' => [
