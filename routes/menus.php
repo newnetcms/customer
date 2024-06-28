@@ -4,7 +4,6 @@ use Newnet\Customer\CustomerAdminMenuKey;
 
 AdminMenu::addItem(__('customer::menu.customer.index'), [
     'id'         => CustomerAdminMenuKey::CUSTOMER,
-    'route'      => 'customer.admin.customer.index',
     'icon'       => 'fas fa-users',
     'order'      => 9000,
 ]);
