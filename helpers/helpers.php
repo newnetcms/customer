@@ -1,10 +1,13 @@
 <?php
 
+use Newnet\Customer\Models\Customer;
+use Newnet\Customer\Models\Group;
+
 if (!function_exists('get_customer_group_options')) {
     function get_customer_group_options()
     {
         $options = [];
-        $groups = \Newnet\Customer\Models\Group::all();
+        $groups = Group::get();
         foreach ($groups as $item) {
             $options[] = [
                 'value' => $item->id,
@@ -20,7 +23,7 @@ if (!function_exists('get_customer_options')) {
     function get_customer_options()
     {
         $options = [];
-        $customers = \Newnet\Customer\Models\Customer::all();
+        $customers = Customer::orderBy('name')->get();
         foreach ($customers as $item) {
             $options[] = [
                 'value' => $item->id,
@@ -36,7 +39,7 @@ if (!function_exists('current_customer')) {
     /**
      * Get Current Customer
      *
-     * @return \Newnet\Customer\Models\Customer|null
+     * @return Customer|null
      */
     function current_customer()
     {
@@ -48,7 +51,7 @@ if (!function_exists('get_current_customer')) {
     /**
      * Get Current Customer
      *
-     * @return \Illuminate\Contracts\Auth\Authenticatable|\Newnet\Customer\Models\Customer|null
+     * @return \Illuminate\Contracts\Auth\Authenticatable|Customer|null
      */
     function get_current_customer()
     {
