@@ -23,7 +23,8 @@ class CustomerRequest extends FormRequest
      */
     public function rules()
     {
-        $auth = request()->id ? request()->id : auth()->user()->id;
+        $auth = $this->route('customer');
+
         return [
             'name' => 'required',
             'phone'     => 'required|numeric|unique:customer__customers,phone,'.$auth,
