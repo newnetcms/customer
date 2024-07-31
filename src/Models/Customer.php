@@ -74,7 +74,7 @@ class Customer extends Authenticatable
     ];
 
     protected $casts = [
-        'is_active'         => 'boolean',
+        'is_active' => 'boolean',
         'email_verified_at' => 'datetime',
         'phone_verified_at' => 'datetime',
     ];
@@ -109,5 +109,10 @@ class Customer extends Authenticatable
         }
 
         return config('cms.customer.default_avatar') ?: asset('vendor/newnet-admin/dist/img/avatar-1.jpg');
+    }
+
+    public function banned()
+    {
+        return $this->hasOne(Banned::class, 'customer_id');
     }
 }

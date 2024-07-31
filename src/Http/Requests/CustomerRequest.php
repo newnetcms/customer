@@ -25,12 +25,20 @@ class CustomerRequest extends FormRequest
     {
         $auth = $this->route('customer');
 
-        return [
+        $rules = [
             'name' => 'required',
-            'phone'     => 'required|numeric|unique:customer__customers,phone,'.$auth,
-            'email'     => 'required|unique:customer__customers,email,'.$auth,
-            'password'  => 'nullable|min:6|required_with:password_confirmation|string|confirmed',
+            'password' => 'nullable|min:6|required_with:password_confirmation|string|confirmed',
         ];
+
+        if ($this->input('email')) {
+            $rules['email'] = 'required|unique:customer__customers,email,'.$auth;
+        }
+
+        if ($this->input('phone')) {
+            $rules['phone'] = 'required|numeric|unique:customer__customers,phone,'.$auth;
+        }
+
+        return $rules;
     }
 
     public function attributes()

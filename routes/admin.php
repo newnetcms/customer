@@ -2,6 +2,7 @@
 
 use Newnet\Customer\Http\Controllers\Admin\CustomerController;
 use Newnet\Customer\Http\Controllers\Admin\GroupController;
+use Newnet\Customer\Http\Controllers\Admin\BannedController;
 
 Route::prefix('customer')
     ->name('customer.admin.')
@@ -9,4 +10,5 @@ Route::prefix('customer')
     ->group(function () {
         Route::resource('customer', CustomerController::class);
         Route::resource('group', GroupController::class);
+        Route::resource('banned', BannedController::class);
     });
