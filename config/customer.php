@@ -57,7 +57,7 @@ return [
         return route('customer.web.customer.login');
     },
 
-    'login_username' => 'email',
+    'login_username' => 'email_phone', // email|phone|email_phone
 
     'validator' => [
         'name' => true,

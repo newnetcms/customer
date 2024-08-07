@@ -74,4 +74,23 @@ class LoginController extends Controller
             ? new Response('', 204)
             : redirect($redirectAfterLogout);
     }
+
+    protected function credentials(Request $request)
+    {
+        if ($this->username() == 'email_phone') {
+            $value = $request->input($this->username());
+            if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                $field = 'email';
+            } else {
+                $field = 'phone';
+            }
+
+            return [
+                $field => $value,
+                'password' => $request->input('password'),
+            ];
+        } else {
+            return $request->only($this->username(), 'password');
+        }
+    }
 }
