@@ -54,6 +54,10 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
+        if ($back = request('back')) {
+            return $back;
+        }
+
         $config = config('cms.customer.redirect_after_login', route('customer.web.customer.profile'));
 
         return is_callable($config) ? $config() : $config;
