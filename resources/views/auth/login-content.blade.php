@@ -3,7 +3,7 @@
         <form class="auth__form" method="POST" action="{{ route('customer.web.customer.login') }}">
             @csrf
             <div class="logo">
-                <img src="{{ theme_url('images/logo.svg') }}" alt="" />
+                {{-- <img src="{{ theme_url('images/logo.svg') }}" alt="" /> --}}
             </div>
             <div class="title">{{ __('login') }}</div>
             <div class="input__wrap">
@@ -49,7 +49,7 @@
             </a>
         </form>
         <div class="auth__bg">
-            <img src="{{ theme_url('images/auth-login.png') }}" alt="" />
+            {{-- <img src="{{ theme_url('images/auth-login.png') }}" alt="" /> --}}
         </div>
     </div>
 </div>

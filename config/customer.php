@@ -65,5 +65,9 @@ return [
         'phone' => false,
         'password' => true,
         'password_confirmed' => env('CUSTOMER_VALIDATOR_PASSWORD_CONFIRMED', false),
-    ]
+    ],
+
+    'api' => [
+        'revoke_old_token' => env('CUSTOMER_API_REVOKE_OLD_TOKEN', true),
+    ],
 ];

@@ -5,6 +5,7 @@ namespace Newnet\Customer\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Newnet\Media\Traits\HasMediaTrait;
 
 /**
@@ -54,6 +55,7 @@ class Customer extends Authenticatable
 {
     use Notifiable;
     use HasMediaTrait;
+    use HasApiTokens;
 
     protected $table = 'customer__customers';
 
