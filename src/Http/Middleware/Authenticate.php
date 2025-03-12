@@ -2,9 +2,8 @@
 
 namespace Newnet\Customer\Http\Middleware;
 
-use Closure
+use Closure;
 use Illuminate\Auth\AuthenticationException;
-
 class Authenticate extends \Illuminate\Auth\Middleware\Authenticate
 {
     public function handle($request, Closure $next, ...$guards)
