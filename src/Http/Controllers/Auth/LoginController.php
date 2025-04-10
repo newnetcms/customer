@@ -97,4 +97,20 @@ class LoginController extends Controller
             return $request->only($this->username(), 'password');
         }
     }
+
+    protected function attemptLogin(Request $request)
+    {
+        $credentials = $this->credentials($request);
+
+        $testLogin = $this->guard()->attempt($credentials, $request->boolean('remember', true));
+        if (!$testLogin) {
+            if (isset($credentials['phone']) && preg_match('/^\+84/', $credentials['phone'])) {
+                $credentials['phone'] = preg_replace('/^\+84/', '0', $credentials['phone']);
+
+                return $this->guard()->attempt($credentials, $request->boolean('remember', true));
+            }
+        }
+
+        return $testLogin;
+    }
 }
