@@ -113,4 +113,16 @@ class LoginController extends Controller
 
         return $testLogin;
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($request->wantsJson()) {
+            return [
+                'success' => true,
+                'redirect' => $this->redirectPath(),
+            ];
+        } else {
+            return redirect()->intended($this->redirectPath());
+        }
+    }
 }
