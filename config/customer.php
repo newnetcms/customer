@@ -1,5 +1,6 @@
 <?php
 
+use Newnet\Customer\CustomerRedirectManager;
 use Newnet\Customer\Models\Customer;
 
 return [
@@ -37,25 +38,11 @@ return [
 
     'default_avatar' => null,
 
-    'redirect_after_login' => function () {
-        return route('customer.web.customer.profile');
-    },
-
-    'redirect_after_register' => function () {
-        return route('customer.web.customer.profile');
-    },
-
-    'redirect_after_logout' => function () {
-        return route('customer.web.customer.login');
-    },
-
-    'redirect_if_authenticated' => function () {
-        return route('customer.web.customer.profile');
-    },
-
-    'redirect_if_unauthenticated' => function () {
-        return route('customer.web.customer.login');
-    },
+    'redirect_after_login' => [CustomerRedirectManager::class, 'afterLogin'],
+    'redirect_after_register' => [CustomerRedirectManager::class, 'afterRegister'],
+    'redirect_after_logout' => [CustomerRedirectManager::class, 'afterLogout'],
+    'redirect_if_authenticated' => [CustomerRedirectManager::class, 'ifAuthenticated'],
+    'redirect_if_unauthenticated' => [CustomerRedirectManager::class, 'ifUnauthenticated'],
 
     'login_username' => 'email_phone', // email|phone|email_phone
 
