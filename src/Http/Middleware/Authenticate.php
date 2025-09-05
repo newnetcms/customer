@@ -33,7 +33,7 @@ class Authenticate extends \Illuminate\Auth\Middleware\Authenticate
             if (in_array('customer', $guards)) {
                 $config = config('cms.customer.redirect_if_unauthenticated', route('customer.web.customer.login'));
 
-                return is_callable($config) ? $config() : $config;
+                return is_callable($config) ? call_user_func($config) : $config;
             } elseif (\Route::has('customer.web.customer.login')) {
                 return route('customer.web.customer.login');
             } else {

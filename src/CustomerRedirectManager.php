@@ -4,27 +4,27 @@ namespace Newnet\Customer;
 
 class CustomerRedirectManager
 {
-    public function afterLogin()
+    public static function afterLogin()
     {
         return route('customer.web.customer.profile');
     }
 
-    public function afterRegister()
+    public static function afterRegister()
     {
         return route('customer.web.customer.profile');
     }
 
-    public function afterLogout()
+    public static function afterLogout()
     {
         return route('customer.web.customer.login');
     }
 
-    public function ifAuthenticated()
+    public static function ifAuthenticated()
     {
         return route('customer.web.customer.profile');
     }
 
-    public function ifUnauthenticated()
+    public static function ifUnauthenticated()
     {
         return route('customer.web.customer.login');
     }

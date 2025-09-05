@@ -60,7 +60,7 @@ class LoginController extends Controller
 
         $config = config('cms.customer.redirect_after_login', route('customer.web.customer.profile'));
 
-        return is_callable($config) ? $config() : $config;
+        return is_callable($config) ? call_user_func($config) : $config;
     }
 
     /**
@@ -72,11 +72,12 @@ class LoginController extends Controller
     protected function loggedOut(Request $request)
     {
         $config = config('cms.customer.redirect_after_logout', route('customer.web.customer.login'));
-        $redirectAfterLogout = is_callable($config) ? $config() : $config;
+
+        $redirect = is_callable($config) ? call_user_func($config) : $config;
 
         return $request->wantsJson()
             ? new Response('', 204)
-            : redirect($redirectAfterLogout);
+            : redirect($redirect);
     }
 
     protected function credentials(Request $request)

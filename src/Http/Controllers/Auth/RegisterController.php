@@ -96,6 +96,6 @@ class RegisterController extends Controller
     {
         $config = config('cms.customer.redirect_after_register', route('customer.web.customer.profile'));
 
-        return is_callable($config) ? $config() : $config;
+        return is_callable($config) ? call_user_func($config) : $config;
     }
 }

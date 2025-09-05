@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             $config = config('cms.customer.redirect_if_authenticated', route('customer.web.customer.profile'));
 
-            $redirect = is_callable($config) ? $config() : $config;
+            $redirect = is_callable($config) ? call_user_func($config) : $config;
 
             return redirect($redirect);
         }
