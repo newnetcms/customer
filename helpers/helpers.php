@@ -85,3 +85,12 @@ if (!function_exists('get_current_customer_field')) {
         return object_get($customer, $field);
     }
 }
+
+if (!function_exists('get_current_customer_avatar')) {
+    function get_current_customer_avatar()
+    {
+        $customer = get_current_customer();
+
+        return $customer ? $customer->avatar_url : null;
+    }
+}
