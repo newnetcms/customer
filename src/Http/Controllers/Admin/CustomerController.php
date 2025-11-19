@@ -36,6 +36,13 @@ class CustomerController extends Controller
     {
         $item = $this->customerRepository->create($request->all());
 
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'data' => $item,
+            ]);
+        }
+
         if ($request->input('continue')) {
             return redirect()
                 ->route('customer.admin.customer.edit', $item->id)

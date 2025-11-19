@@ -35,7 +35,7 @@ class CustomerRequest extends FormRequest
         }
 
         if ($this->input('phone')) {
-            $rules['phone'] = 'required|numeric|unique:customer__customers,phone,'.$auth;
+            $rules['phone'] = 'required|unique:customer__customers,phone,'.$auth;
         }
 
         return $rules;
