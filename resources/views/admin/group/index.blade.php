@@ -37,42 +37,44 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-bordered dt-responsive nowrap bootstrap4-styling">
-                <thead>
-                <tr>
-                    <th>{{ __('ID') }}</th>
-                    <th>{{ __('customer::group.name') }}</th>
-                    <th>{{ __('customer::group.created_at') }}</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($items as $item)
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered dt-responsive nowrap bootstrap4-styling">
+                    <thead>
                     <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>
-                            <a href="{{ route('customer.admin.group.edit', $item->id) }}">
-                                {{ $item->name }}
-                            </a>
-                        </td>
-                        <td>{{ $item->created_at }}</td>
-                        <td class="text-right">
-                        	@admincan('customer.admin.group.edit')
-	                            <a href="{{ route('customer.admin.group.edit', $item->id) }}" class="btn btn-success-soft btn-sm mr-1">
-	                                <i class="fas fa-pencil-alt"></i>
-	                            </a>
-                            @endadmincan
-
-                            @admincan('customer.admin.group.destroy')
-                            	<table-button-delete url-delete="{{ route('customer.admin.group.destroy', $item->id) }}"></table-button-delete>
-                            @endadmincan
-                        </td>
+                        <th nowrap>{{ __('ID') }}</th>
+                        <th nowrap>{{ __('customer::group.name') }}</th>
+                        <th nowrap>{{ __('customer::group.created_at') }}</th>
+                        <th></th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($items as $item)
+                        <tr>
+                            <td nowrap>{{ $item->id }}</td>
+                            <td nowrap>
+                                <a href="{{ route('customer.admin.group.edit', $item->id) }}">
+                                    {{ $item->name }}
+                                </a>
+                            </td>
+                            <td nowrap>{{ $item->created_at }}</td>
+                            <td nowrap class="text-right">
+                                @admincan('customer.admin.group.edit')
+                                <a href="{{ route('customer.admin.group.edit', $item->id) }}" class="btn btn-success-soft btn-sm mr-1">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                @endadmincan
 
-            {{--{!! $items->appends(Request::all())->render() !!}--}}
+                                @admincan('customer.admin.group.destroy')
+                                <table-button-delete url-delete="{{ route('customer.admin.group.destroy', $item->id) }}"></table-button-delete>
+                                @endadmincan
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            {!! $items->appends(Request::all())->render() !!}
         </div>
     </div>
 @stop
