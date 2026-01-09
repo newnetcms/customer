@@ -49,7 +49,6 @@ class RegisterController extends Controller
             ],
             'phone' => [
                 config('cms.customer.validator.phone') ? 'required' : null,
-                'numeric',
                 'unique:customer__customers,phone'
             ],
             'email' => [
