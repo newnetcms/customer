@@ -28,6 +28,7 @@ class CustomerProfileRequest extends FormRequest
         $rules = [
             'name' => 'required',
             'password' => 'nullable|min:6|required_with:password_confirmation|string|confirmed',
+            'avatar' => 'nullable|image|max:2048',
         ];
 
         if ($this->input('email')) {

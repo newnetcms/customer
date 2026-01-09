@@ -56,4 +56,21 @@ class ProfileController extends Controller
         return redirect()
             ->back()->with('success', __('customer::customer.notification.updated'));
     }
+
+    public function updateAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|max:2048',
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $this->mediaUploader->setFile($request->file('avatar'))->upload();
+            $this->customerRepository->updateById(['avatar' => [$avatar->id]], auth("customer")->user()->id);
+
+            return redirect()
+                ->back()->with('success', __('customer::customer.notification.updated'));
+        }
+
+        return redirect()->back()->withErrors(['avatar' => __('customer::customer.notification.invalid_image')]);
+    }
 }

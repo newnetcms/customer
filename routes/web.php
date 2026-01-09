@@ -24,6 +24,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function (){
 
             Route::get('/profile', [ProfileController::class, 'profile'])->name('customer.web.customer.profile');
             Route::post('/profile', [ProfileController::class, 'update']);
+            Route::post('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('customer.web.customer.update-avatar');
             Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('customer.web.customer.change-password');
             Route::post('/change-password', [ProfileController::class, 'updatePassword']);
 
