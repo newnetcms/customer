@@ -41,6 +41,14 @@ class ProfileController extends Controller
                 $this->customerRepository->updateById(['avatar' => [$avatar->id]], auth("customer")->user()->id);
             }
         }
+
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => __('customer::customer.notification.updated'),
+            ]);
+        }
+
         return redirect()
             ->back()->with('success', __('customer::customer.notification.updated'));
     }
@@ -53,6 +61,14 @@ class ProfileController extends Controller
     public function updatePassword(CustomerChangePasswordRequest $request)
     {
         $this->customerRepository->updateById(['password' => ($request->password)], auth()->user()->id);
+
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => __('customer::customer.notification.updated'),
+            ]);
+        }
+
         return redirect()
             ->back()->with('success', __('customer::customer.notification.updated'));
     }
@@ -67,8 +83,22 @@ class ProfileController extends Controller
             $avatar = $this->mediaUploader->setFile($request->file('avatar'))->upload();
             $this->customerRepository->updateById(['avatar' => [$avatar->id]], auth("customer")->user()->id);
 
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => __('customer::customer.notification.updated'),
+                ]);
+            }
+
             return redirect()
                 ->back()->with('success', __('customer::customer.notification.updated'));
+        }
+
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => false,
+                'message' => __('customer::customer.notification.invalid_image'),
+            ], 422);
         }
 
         return redirect()->back()->withErrors(['avatar' => __('customer::customer.notification.invalid_image')]);
