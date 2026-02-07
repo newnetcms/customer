@@ -3,7 +3,8 @@
     "description": "Module Customer",
     "autoload": {
         "psr-4": {
-            "Newnet\\Customer\\": "/src"
+            "Newnet\\Customer\\": "/src",
+            "Newnet\\Customer\\Database\\Factories\\": "/database/factories"
         },
         "files": [
             "helpers/helpers.php"

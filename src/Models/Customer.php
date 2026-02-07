@@ -56,8 +56,14 @@ class Customer extends Authenticatable
     use Notifiable;
     use HasMediaTrait;
     use HasApiTokens;
+    use \Illuminate\Database\Eloquent\Factories\HasFactory;
 
     protected $table = 'customer__customers';
+
+    protected static function newFactory()
+    {
+        return \Newnet\Customer\Database\Factories\CustomerFactory::new();
+    }
 
     protected $fillable = [
         'group_id',
