@@ -107,9 +107,9 @@ class Customer extends Authenticatable
 
     public function getAvatarUrlAttribute()
     {
-        $avatarMedia = $this->getFirstMedia('avatar');
-        if ($avatarMedia) {
-            return $avatarMedia->getUrl();
+        $avatarUrl = $this->getFirstMedia('avatar')?->getUrl();
+        if ($avatarUrl) {
+            return $avatarUrl;
         }
 
         return config('cms.customer.default_avatar');
